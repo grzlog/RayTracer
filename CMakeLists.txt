@@ -5,6 +5,24 @@ project(raytracer)
 SET(CMAKE_CXX_STANDARD 11)
 SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+###########################################################################
+# glog
+
+SET(WITH_GFLAGS OFF CACHE BOOL "Use gflags")
+SET(BUILD_SHARED_LIBS OFF CACHE BOOL " " FORCE)
+IF(WIN32)
+  ADD_DEFINITIONS( -D GOOGLE_GLOG_DLL_DECL= )
+ENDIF()
+ADD_SUBDIRECTORY(src/ext/glog)
+SET_PROPERTY(TARGET glog logging_unittest demangle_unittest utilities_unittest stl_logging_unittest PROPERTY FOLDER "ext")
+INCLUDE_DIRECTORIES (
+  src/ext/glog/src
+  ${CMAKE_BINARY_DIR}/src/ext/glog
+)
+
+###########################################################################
+
+
 SET(CORE_SOURCES)
 SET(CORE_HEADERS)
 
@@ -25,6 +43,7 @@ ADD_LIBRARY(tracelibs STATIC
 
 SET(ALL_LIBS
      tracelibs
+     glog
 )
 
 add_executable(render_exe src/main/render.cpp)
