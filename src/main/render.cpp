@@ -2,7 +2,8 @@
 #include <iostream>
 int main()
 {
-	DCHECK(1==1);
+	CHECK(1==10);
 	std::cout << "sb" << std::endl;
+	std::cin.get();
 	return 0;
 }

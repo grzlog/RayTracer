@@ -32,6 +32,7 @@ SET(CORE_SOURCES
 
 SET(CORE_HEADERS
      src/core/vector.h
+     src/core/render.h
 )
 
 INCLUDE_DIRECTORIES(src)
