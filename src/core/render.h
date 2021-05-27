@@ -3,4 +3,17 @@
 
 #include <glog/logging.h>
 #include <cmath>
+
+namespace raytracer {
+	template<typename T>
+	class Vector2;
+	template<typename T>
+	class Vector3;
+	template<typename T>
+	class Point2;
+	template<typename T>
+	class Point3;
+}
+
+
 #endif
