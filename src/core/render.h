@@ -3,6 +3,7 @@
 
 #include <glog/logging.h>
 #include <cmath>
+#include <iostream>
 
 namespace raytracer {
 	template<typename T>

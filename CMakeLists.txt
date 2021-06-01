@@ -29,12 +29,14 @@ SET(CORE_HEADERS)
 SET(CORE_SOURCES
      src/core/vector.cpp
      src/core/point.cpp
+	 src/core/matrix.cpp
 )
 
 SET(CORE_HEADERS
      src/core/vector.h
      src/core/render.h
      src/core/point.h
+	 src/core/matrix.h
 )
 
 INCLUDE_DIRECTORIES(src)

@@ -9,7 +9,12 @@ class Vector2 {
 public:
 	Vector2() { x = 0; y = 0; }
 	Vector2(T xx, T yy):x(xx),y(yy){}
-	
+	template<typename U>
+	explicit Vector2(const Vector2<U>& v):x(T(v.x)),y(T(v.y)),z(T(v.z)){}
+	template<typename U>
+	explicit operator Point2<U>()const {
+		return Point2<U>(x, y);
+	}
 	
 	Vector2<T> operator+(const Vector2<T> &v) const {
 		return Vector2(x + v.x, y + v.y);
@@ -49,6 +54,11 @@ public:
 	friend Vector2<T> operator*(U s, const Vector2<T> &v) {
 		return Vector2<T>(s*v.x,s*v.y);
 	}
+
+	friend std::ostream& operator<<(std::ostream& os, const Vector2<T> &v) {
+		os << "Vector: x is " << v.x << "; y is " << v.y ;
+		return os;
+	}
 	
 	template<typename U>
 	Vector2<T> operator/(U s) const {
@@ -84,8 +94,12 @@ public:
 		return y;
 	}
 
-	float length() const {
+	float Length() const {
 		return std::sqrt(x*x + y*y);
+	}
+
+	float LengthSquare() const {
+		return x*x + y*y;
 	}
 
 	T x, y;
@@ -95,6 +109,12 @@ template<typename T>
 class Vector3 {
 	Vector3() { x = y = z = 0; }
 	Vector3(T xx, T yy, T zz) :x(xx), y(yy), z(zz) {}
+	template<typename U>
+	explicit Vector3(const Vector3<U>& v):x(T(v.x)),y(T(v.y)),z(T(v.z)){}
+	template<typename U>
+	explicit operator Point3<U>() {
+		return Point3<U>(x, y, z);
+	}
 	
 	Vector3<T> operator+(const Vector3<T> &v) const {
 		return Vector3<T>(x + v.x, y + v.y, z + v.z);
@@ -158,8 +178,11 @@ class Vector3 {
 		return x != v.x || y != v.y || z != v.z;
 	}
 
-	float length() const {
+	float Length() const {
 		return std::sqrt(x*x + y*y + z*z);
+	}
+	float LengthSquare() const {
+		return x*x + y*y + z*z;
 	}
 
 	T operator[](int i) const{
@@ -175,8 +198,19 @@ class Vector3 {
 		return z;
 	}
 
+	friend std::ostream& operator<<(std::ostream& os, const Vector3<T> &v) {
+		os << "Vector: x is " << v.x << "; y is " << v.y << "; z is " << v.z;
+		return os;
+	}
+
 	T x, y, z;
 };
+
+typedef Vector2<int> Vector2i;
+typedef Vector2<float> Vector2f;
+typedef Vector3<int> Vector3i;
+typedef Vector3<float> Vector3f;
+
 
 
 }
